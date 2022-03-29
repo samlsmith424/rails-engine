@@ -13,6 +13,10 @@ RSpec.describe 'Merchants API' do
       expect(merchants[:data].count).to eq(3)
 
       merchants[:data].each do |merchant|
+        expect(merchant).to have_key(:id)
+        expect(merchant[:id]).to be_a(String)
+        
+        expect(merchant[:attributes]).to be_a(Hash)
         expect(merchant[:attributes]).to have_key(:name)
         expect(merchant[:attributes][:name]).to be_a(String)
       end
@@ -30,6 +34,10 @@ RSpec.describe 'Merchants API' do
       merchant = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to be_successful
+
+      expect(merchant[:data]).to have_key(:id)
+      expect(merchant[:data][:id]).to be_a(String)
+
       expect(merchant[:data][:attributes]).to have_key(:name)
       expect(merchant[:data][:attributes][:name]).to be_a(String)
     end
