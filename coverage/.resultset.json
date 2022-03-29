@@ -1,8 +1,9 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/samsmith/3module/projects/rails-engine/app/models/merchant.rb": {
+      "/Users/samsmith/3module/projects/rails-engine/app/models/item.rb": {
         "lines": [
+          1,
           1,
           null
         ]
@@ -11,6 +12,81 @@
         "lines": [
           1,
           1,
+          null
+        ]
+      },
+      "/Users/samsmith/3module/projects/rails-engine/spec/models/merchant_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/samsmith/3module/projects/rails-engine/app/models/merchant.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/samsmith/3module/projects/rails-engine/spec/requests/api/v1/items_request_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          4,
+          4,
+          null,
+          4,
+          4,
+          null,
+          4,
+          4,
+          null,
+          4,
+          4,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/samsmith/3module/projects/rails-engine/spec/requests/api/v1/merchant_items_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          0,
+          0,
+          null,
+          null,
+          0,
+          null,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
           null
         ]
       },
@@ -60,6 +136,21 @@
           null
         ]
       },
+      "/Users/samsmith/3module/projects/rails-engine/app/controllers/api/v1/items_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/samsmith/3module/projects/rails-engine/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
       "/Users/samsmith/3module/projects/rails-engine/app/controllers/api/v1/merchants_controller.rb": {
         "lines": [
           1,
@@ -72,14 +163,8 @@
           null,
           null
         ]
-      },
-      "/Users/samsmith/3module/projects/rails-engine/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
-          null
-        ]
       }
     },
-    "timestamp": 1648510348
+    "timestamp": 1648515707
   }
 }
