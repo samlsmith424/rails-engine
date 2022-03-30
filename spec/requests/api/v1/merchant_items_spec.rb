@@ -33,6 +33,5 @@ RSpec.describe 'Merchant Items API' do
       expect(merchant_item[:attributes][:merchant_id]).to eq(merchant1.id)
     end
   end
-
-  # need sad path testing 
+  # need sad path testing
 end
