@@ -33,5 +33,19 @@ RSpec.describe 'Merchant Items API' do
       expect(merchant_item[:attributes][:merchant_id]).to eq(merchant1.id)
     end
   end
-  # need sad path testing
+  # need sad path testing for 404
+
+  describe 'getting an items merchant' do
+    it 'can get merchant data by for a given item id' do
+      # merchant1 = create(:merchant)
+      # item1 = create(:item, merchant_id: merchant1.id)
+      item = create(:item)
+
+      # get "/items/#{item.id}/merchant"
+      get api_v1_item_merchant_index_path(item.id)
+
+      merchant_item = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to be_successful
+    end
+  end
 end
