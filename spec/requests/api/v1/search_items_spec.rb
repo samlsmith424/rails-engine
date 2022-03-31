@@ -10,7 +10,7 @@ RSpec.describe 'items search' do
     get '/api/v1/items/find_all?name=for'
 
     results = JSON.parse(response.body, symbolize_names: true)
-
+# require "pry"; binding.pry
     expect(response).to be_successful
     expect(results).to be_a(Hash)
     expect(results).to have_key(:data)
