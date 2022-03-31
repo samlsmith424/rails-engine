@@ -82,7 +82,7 @@ RSpec.describe 'Items API' do
     end
 
     it 'does not create an item if all fields are not input properly' do
-      # merchant_id = create(:merchant).id
+      
       merchant1 = create(:merchant)
       item_params = {
                   "name": "Strainer",
@@ -95,10 +95,10 @@ RSpec.describe 'Items API' do
       expect(merchant1.items.count).to eq(0)
 
       post "/api/v1/items", headers: headers, params: item_params.to_json
-      # require "pry"; binding.pry
+
       idk = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to have_http_status(400)
       expect(idk[:message]).to eq("Unable to create item")
-      # expect(response).to be_successfu11l
     end
   end
 
@@ -126,7 +126,6 @@ RSpec.describe 'Items API' do
     it 'does not edit an item if input is invalid' do
       merchant_id = create(:merchant).id
       item1 = create(:item, merchant_id: merchant_id)
-
       original_data = Item.last.name
 
       item_params = {
@@ -137,11 +136,10 @@ RSpec.describe 'Items API' do
 
       patch "/api/v1/items/#{item1.id}", headers: headers, params: JSON.generate({item: item_params})
       updated_item = Item.find_by(id: item1.id)
-
       idk = JSON.parse(response.body, symbolize_names: true)
-      # require "pry"; binding.pry
+
+      expect(response).to have_http_status(400)
       expect(idk[:message]).to eq("Unable to update item")
-      # expect(response).to have_http_status(400)
     end
   end
 
