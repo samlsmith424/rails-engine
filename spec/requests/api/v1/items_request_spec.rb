@@ -5,7 +5,6 @@ RSpec.describe 'Items API' do
     it 'returns a list of all items' do
       create_list(:item, 4)
 
-      # get '/api/v1/items'
       get api_v1_items_path
 
       expect(response).to be_successful
@@ -34,10 +33,9 @@ RSpec.describe 'Items API' do
 
   describe 'get one items endpoint' do
     it 'returns one item by id' do
-      # item = create(:item)
+
       id = create(:item).id
 
-      # get "/api/v1/items/#{id}"
       get api_v1_item_path(id)
 
       expect(response).to be_successful
@@ -82,6 +80,26 @@ RSpec.describe 'Items API' do
       expect(created_item.description).to eq(item_params[:description])
       expect(created_item.unit_price).to eq(item_params[:unit_price])
     end
+
+    it 'does not create an item if all fields are not input properly' do
+      
+      merchant1 = create(:merchant)
+      item_params = {
+                  "name": "Strainer",
+                  "description": "Strains water from food items",
+                  "unit_price": "Not an integer",
+                  "merchant_id": merchant1.id
+                }
+
+      headers = {"CONTENT_TYPE" => "application/json"}
+      expect(merchant1.items.count).to eq(0)
+
+      post "/api/v1/items", headers: headers, params: item_params.to_json
+
+      idk = JSON.parse(response.body, symbolize_names: true)
+      expect(response).to have_http_status(400)
+      expect(idk[:message]).to eq("Unable to create item")
+    end
   end
 
   describe 'editing an item' do
@@ -104,6 +122,25 @@ RSpec.describe 'Items API' do
       expect(updated_item.name).to_not eq(original_data)
       expect(updated_item.name).to eq("Very very new item")
     end
+
+    it 'does not edit an item if input is invalid' do
+      merchant_id = create(:merchant).id
+      item1 = create(:item, merchant_id: merchant_id)
+      original_data = Item.last.name
+
+      item_params = {
+                  "name": 10.99999,
+                }
+
+      headers = {"CONTENT_TYPE" => "application/json"}
+
+      patch "/api/v1/items/#{item1.id}", headers: headers, params: JSON.generate({item: item_params})
+      updated_item = Item.find_by(id: item1.id)
+      idk = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to have_http_status(400)
+      expect(idk[:message]).to eq("Unable to update item")
+    end
   end
 
   describe 'deleting an item' do
@@ -112,7 +149,7 @@ RSpec.describe 'Items API' do
       item1 = create(:item, merchant_id: merchant1.id)
 
       expect(merchant1.items.count).to eq(1)
-      
+
       delete "/api/v1/items/#{item1.id}"
 
       expect(response).to be_successful

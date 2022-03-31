@@ -9,8 +9,12 @@ class Api::V1::ItemsController < ApplicationController
 
   def create
     merchant = Merchant.find(params[:merchant_id])
-    item = merchant.items.create(item_params)
-    render json: ItemSerializer.new(item), status: :created
+    begin
+      item = merchant.items.create!(item_params)
+      render json: ItemSerializer.new(item), status: :created
+    rescue ActiveRecord::RecordInvalid
+      render json: { message: 'Unable to create item'}, status: :bad_request
+    end
   end
 
   def update
@@ -18,7 +22,8 @@ class Api::V1::ItemsController < ApplicationController
     if item.save
       render json: ItemSerializer.new(item)
     else
-      render status: :bad_request
+      render json: { message: 'Unable to update item'}, status: :bad_request
+      # render status: :bad_request
     end
   end
 
