@@ -22,7 +22,8 @@ class Api::V1::ItemsController < ApplicationController
     if item.save
       render json: ItemSerializer.new(item)
     else
-      render status: :bad_request
+      render json: { message: 'Unable to update item'}, status: :bad_request
+      # render status: :bad_request
     end
   end
 
