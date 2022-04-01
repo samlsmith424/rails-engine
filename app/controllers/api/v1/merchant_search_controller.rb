@@ -2,7 +2,6 @@ class Api::V1::MerchantSearchController < ApplicationController
   def show
     if params[:name] == ""
       render json: { data: {message: 'No search matches, please try again'} }, status: 400
-
     elsif params[:name]
       merchant = Merchant.search(params[:name])
       if merchant == nil
