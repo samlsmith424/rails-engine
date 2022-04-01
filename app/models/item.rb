@@ -8,12 +8,10 @@ class Item < ApplicationRecord
   validates :unit_price, numericality: true
 
   def self.find_all_items(search)
-    # where('name ILIKE ?', "%#{search}%")
     where('name ILIKE ?', "%#{search}%").order(:name)
   end
 
   def find_empty_invoices
-    # invoices.joins(:items).select('invoices.*, count(items.*)').group('invoices.id').having('count(items.*) = 1')
     invoices.joins(:items).select('invoices.*, count(items.*)').group('invoices.id').having('count(items.*) = 1').pluck(:id)
   end
 end
