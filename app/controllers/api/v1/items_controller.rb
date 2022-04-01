@@ -23,12 +23,14 @@ class Api::V1::ItemsController < ApplicationController
       render json: ItemSerializer.new(item)
     else
       render json: { message: 'Unable to update item'}, status: :bad_request
-      # render status: :bad_request
     end
   end
 
   def destroy
-    render json: Item.delete(params[:id])
+    @item = Item.find(params[:id])
+    empties = @item.find_empty_invoices
+    @item.destroy!
+    Invoice.find_by(id: empties).destroy!
   end
 
   private
