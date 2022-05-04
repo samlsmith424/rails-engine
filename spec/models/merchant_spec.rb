@@ -4,14 +4,10 @@ RSpec.describe Merchant, type: :model do
 
   describe 'relationships' do
     it { should have_many(:items) }
-    # it { should have_many(:invoices) }
+    it { should have_many(:invoices) }
   end
 
   describe 'class methods' do
-    it 'can find a merchant based on search criteria' do
-
-    end
-
     it 'return the first object in the database in case-sensitive alphabetical order if multiple matches are found' do
       chad = create(:merchant, name: "Chad")
       brad = create(:merchant, name: "Brad")
