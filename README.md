@@ -1,10 +1,29 @@
 <h1>Rails Engine</h1>
 
-
-### Overview
-`Rails Engine` is a backend application that utilizes service oriented architecture. It exposes data through API's for an E-commerce application.
-
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+### Overview
+`Rails Engine` is a backend E-commerce application that utilizes service oriented architecture. It exposes merchant and item data through API's to be consumed by a frontend team. 
+
+#### Getting Started
+
+1. Fork and Clone the repo
+2. Install gem packages: `bundle install`
+3. Setup the database: `rails db:{create,migrate,seed}`
+4. Get the Schema: `rails db:schema:dump`
+
+#### RSpec Testing:
+  - This application is fully tested through RSpec. 
+  - You can run RSpec on any directory/file using `bundle exec rspec <directory/file>`
+ 
+#### Postman Testing:
+
+  - Import the the below test suites to Postman: 
+     - [Rails Engine, Section 1 Tests](https://backend.turing.edu/module3/projects/rails_engine_lite/RailsEngineSection1.postman_collection.json)
+     - [Rails Engine, Section 2 Tests](https://backend.turing.edu/module3/projects/rails_engine_lite/RailsEngineSection2.postman_collection.json)
+
+#### Database 
+![rails engine schema](https://user-images.githubusercontent.com/84606723/168408296-71a4a92f-701b-4701-813b-ca33d157beb7.png)
+
 #### Framework
 <p>
   <img src="https://img.shields.io/badge/Ruby%20On%20Rails-b81818.svg?&style=flat&logo=rubyonrails&logoColor=white" />
