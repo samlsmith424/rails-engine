@@ -2,7 +2,7 @@
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 ### Overview
-`Rails Engine` is a backend E-commerce application that utilizes service oriented architecture. It exposes merchant and item data through API's to be consumed by a frontend team. 
+`Rails Engine` is a backend E-commerce application that utilizes service oriented architecture. It exposes merchant and item data through APIs to be consumed by a frontend team. 
 
 #### Getting Started
 
